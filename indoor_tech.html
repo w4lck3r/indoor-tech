@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>indoor_tech.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="auteur">Auteur :</h1>
+<ul>
+<li>SALMI badr-eddine</li>
+</ul>
+<h1 id="sujet">Sujet :</h1>
+<ul>
+<li>Quelle est la meilleure technologie GeoIndoor ,</li>
+</ul>
+<hr>
+<h3 id="table">Table</h3>
+<ul>
+<li>
+<p>Qu'est-ce qu'un système de positionnement intérieur (IPS) ?</p>
+</li>
+<li>
+<p>les technologie possible pour GeoIndoor :</p>
+<ul>
+<li>BLE</li>
+<li>WIFI</li>
+<li>UWB</li>
+<li>RFID</li>
+<li>IR</li>
+<li>LI-FI</li>
+<li>Ultra-sound</li>
+<li>ZigBee</li>
+</ul>
+</li>
+<li>
+<p>Comparaison entre ces Technologies</p>
+</li>
+<li>
+<p>Choix final</p>
+</li>
+</ul>
+<h1 id="syst%C3%A8me-de-positionnement-int%C3%A9rieur">Système de positionnement intérieur :</h1>
+<p>Un système de positionnement intérieur (IPS) peut être considéré comme un GPS pour les sites intérieurs. En utilisant une variété de méthodes, ces systèmes peuvent détecter des emplacements en temps réel pour déterminer les coordonnées des personnes ou des biens à l'intérieur d'un bâtiment. Ces coordonnées sont généralement représentées visuellement par un point bleu sur une carte intérieure numérique pour fournir un contexte supplémentaire aux utilisateurs et des fonctionnalités telles que l'orientation.</p>
+<p><img src="GEO.png" alt="geoIndoor sys"></p>
+<h1 id="les-technologie-possible-pour-geoindoor">Les technologie possible pour GeoIndoor :</h1>
+<h2 id="bluetooth-low-energy">Bluetooth Low Energy:</h2>
+<p>Les signaux Bluetooth Low Energy (BLE) des balises alimentées par batterie sont au cœur de la technologie de localisation intérieure. C'est l'une des technologies les plus importantes qui a émergé pour le positionnement en intérieur et qui est devenue la norme de l'industrie disponible sur la plupart des appareils aujourd'hui. Il utilise des balises dites BLE (ou iBeacons) qui sont peu coûteuses, petites, ont une longue durée de vie de la batterie et ne nécessitent pas de source d'énergie externe. L'appareil (téléphone/montre, etc.) détecte le signal de la balise et peut calculer approximativement la distance jusqu'à la balise, estimant ainsi l'emplacement intérieur de l'utilisateur.</p>
+<p>Pour afficher l'emplacement de l'utilisateur, nous utilisons un algorithme de trilatération qui exige que l'utilisateur soit à moins de 6 mètres d'au moins 3 balises à tout moment. Les performances de cette méthode dépendent largement de la qualité de la configuration de votre balise et de l'appareil de l'utilisateur.</p>
+<p>Pour de meilleurs résultats, placez les balises dans une formation de grille avec des balises espacées de 2 m comme indiqué ci-dessous, ou si cela n'est pas possible, d'une manière qui couvre les zones les plus pertinentes avec un nombre minimum de balises.</p>
+<table>
+<tr>
+<td>
+<p><img src="ibeacons_1.png" alt="placement of iBeacons"></p>
+</td>
+<td>
+<p><img src="ibeacons-process.png" alt="iBeacons process"></p>
+</td>
+</tr>
+</table>
+<hr>
+<h2 id="wifi">WIFI</h2>
+<p>Il existe des balises émettrices WiFi dans ce système qui envoient de simples paquets d'informations aux points d'accès WiFi dans un espace intérieur. Le système dorsal utilise un algorithme pour étudier l'heure et la force de ces lectures reçues afin de déterminer la position des balises émettrices.
+Ces informations de localisation sont enregistrées dans le cloud et vous sont transmises sur le tableau de bord frontal. Le système utilise une mesure de différence de temps d'arrivée (TDOA) avec une large bande passante pour fournir une précision de position d'environ trois à cinq mètres.</p>
+<p><img src="wifi.jpg" alt="example WIFI"></p>
+<hr>
+<h2 id="ultra-wideband-uwb">Ultra-Wideband (UWB):</h2>
+<p>Le système de positionnement intérieur UWB est apparu il y a plus de 20 ans, mais ce n'est que récemment qu'il s'est étendu aux entreprises qui ont besoin d'un outil sans fil standardisé et unifié pour connecter le matériel informatique. En utilisant le système UWB, certaines tâches vraiment importantes peuvent être résolues, notamment:</p>
+<ul>
+<li>
+<p>une protection fiable des données</p>
+</li>
+<li>
+<p>prise en charge de la transmission de données à haut débit</p>
+</li>
+<li>
+<p>localisation d'objets</p>
+</li>
+<li>
+<p>réduction de la consommation d'énergie.</p>
+</li>
+</ul>
+<p>La technologie Ultra Wide-band a du potentiel. Grâce à une précision de positionnement élevée, allant de 10 à 30 cm, la technologie Ultra Wide-Band est largement utilisée pour contrôler le périmètre des endroits dangereux de l'entreprise et contrôler la mise en œuvre des KPI sur les lieux de travail.</p>
+<p>UWB est une technologie à bande ultra large utilisée pour transmettre des impulsions à haute fréquence à de petites distances. Les signaux UWB sont transmis à des fréquences allant jusqu'à quelques GHz et atteignent la bande passante de 25% à 100%.</p>
+<p>Les ordinateurs et périphériques nécessitent une interface haut débit mais l'utilisation du Bluetooth et de la norme 802.11 ne permet pas toujours d'atteindre les objectifs fixés. Le principal inconvénient de ces protocoles est une faible bande passante (en moyenne - jusqu'à 19 Mbits/sec), ce qui est irrationnel pour les applications qui nécessitent des débits de transmission élevés.</p>
+<p>Lors de la mise en œuvre du suivi de localisation UWB dans l'infrastructure de l'entreprise, chaque actif suivi est équipé d'une étiquette spéciale avec un accumulateur intégré ou attaché. Dans son travail, l'étiquette prend des milliards d'impulsions radio qui sont émises à un intervalle d'une nanoseconde dans une large gamme de fréquences. Des récepteurs, ou transpondeurs, détectent ces signaux et les transforment en informations permettant de définir la position de l'objet.
+<img src="uwb.png" alt="ultra wide band"></p>
+<hr>
+<h2 id="radio-frequency-identification">Radio-frequency-identification :</h2>
+<p>Un système RFID – RFID signifie « radio-frequency-identification » – comprend deux composants : un transpondeur (ou étiquette) contenant des données qui peuvent être lues par RF et un interrogateur (ou lecteur) qui peut lire les données du transpondeur.</p>
+<p>Les moyens spécifiques par lesquels ces composants communiquent (c'est-à-dire leur &quot;mécanisme de couplage&quot;) déterminent la portée, la complexité et le coût du système. (« Couplage » dans ce contexte fait référence à un transfert d'énergie entre l'étiquette et le lecteur.) Actuellement, trois types de mécanismes de couplage sont en concurrence sur le marché : inductif, capacitif et rétrodiffusé.</p>
+<p><img src="rfid.jpg" alt="example RFID"></p>
+<hr>
+<h2 id="ir-system">IR system :</h2>
+<p>Les systèmes de localisation intérieure basés sur l'infrarouge utilisent des impulsions lumineuses infrarouges (comme une télécommande de télévision) pour localiser les signaux à l'intérieur d'un bâtiment. Des récepteurs IR sont installés dans chaque pièce, et lorsque l'étiquette IR émet des impulsions, elle est lue par le récepteur IR.</p>
+<hr>
+<h2 id="lifi">LIFI :</h2>
+<p>Li-Fi signifie Light-Fidelity, qui fait référence à la « communication par la lumière visible (VLC) » utilisant des diodes électroluminescentes
+(LED) comme support de transmission de données sans fil. L'idée de base de la technologie Li-Fi est d'utiliser la lumière visible
+d'une ampoule LED pour transmettre des données à haut débit à un photodétecteur, qui est connecté à un smartphone ou
+tablette. Le photodétecteur convertit le signal d'éclairage reçu en signal électrique, qu'un smartphone ou une tablette
+peut reconnaître et procéder facilement. En fait, le Wi-Fi et le Li-Fi sont des ondes électromagnétiques : la fréquence du Wi-Fi
+Le spectre est d'environ 2,4 GHz ou 5 GHz, tandis que le spectre de fréquences du Li-Fi est situé dans la bande de lumière visible. Considérant
+l'utilisation généralisée des blubs LED à l'intérieur des bâtiments et une large bande passante de lumière visible, la technologie Li-Fi est beaucoup
+moins cher et plus écologique que le Wi-Fi. La technique Li-Fi a un grand potentiel dans de nombreux
+applications, telles que les services basés sur la localisation, la connectivité mobile, l'éclairage intelligent et les environnements dangereux.</p>
+<p><img src="lifi.png" alt="example LIFI"></p>
+<hr>
+<h2 id="ultra-sound">Ultra-sound :</h2>
+<p>Cette technologie repose sur l'utilisation d'ultrasons qui définissent le spectre des ondes sonores avec une fréquence trop élevée pour la perception humaine (plus de 20 kHz). Le système de localisation par ultrasons est basé sur le mode de transmission du signal ascendant/descendant, de sorte que lors de l'installation, le nombre d'appareils récepteurs n'est pas limité. Le positionnement par ultrasons est considéré comme une solution plus efficace par rapport au GPS car, lors du positionnement, il ne nécessite pas de visibilité directe entre les émetteurs et les lecteurs de signaux.</p>
+<p><img src="ultrasound.png" alt="ultra sound"></p>
+<hr>
+<h2 id="zigbee">ZigBee :</h2>
+<p>ZigBee est une nouvelle norme ouverte à adopter dans la conception et la mise en œuvre de réseaux de capteurs sans fil. Avec un tas de fonctionnalités sur les faibles émissions radio, la faible consommation d'énergie, la longue durée de veille, la courte distance, le réseau activé, la grande quantité de nœuds, la topologie flexible et la facilité de former un réseau, ZigBee devient rapidement l'une des technologies grand public pour le numérique sans fil. vie intelligente. Cette image en dessous présente la pile de protocoles de ZigBee et les interfaces d'application pour la mise en œuvre du suivi de localisation par ZigBee. En outre, le schéma de suivi de localisation est expliqué et un système de suivi de localisation pilote est conçu et démontré. Le résultat a montré qu'un nœud observé peut être correctement positionné selon les performances attendues</p>
+<table>
+<tr>
+<td>
+<p><img src="zigbee.png" alt="zigBee stack archi"></p>
+</td>
+<td>
+<p><img src="zigbee-.png" alt="zigBee Network"></p>
+</td>
+</tr>
+</table>
+<hr>
+<h2 id="avantages-et-inconveniants-de-chaque-technologie">Avantages et Inconveniants de chaque technologie :</h2>
+<p><img src="Technologie-1.png" alt="comparison part 1">
+<img src="Technologie-2.png" alt="comparison part 2"></p>
+<p>( LOS : loss of signal )</p>
+<hr>
+<h2 id="comparaison-entre-les-technologies">Comparaison entre les technologies :</h2>
+<table>
+<tr>
+<td>
+<p><img src="comparaison1.jpg" alt="comparison"></p>
+</td>
+<td>
+<p><img src="comparaison.webp" alt="comparison"></p>
+</td>
+</tr>
+</table>
+<hr>
+<h2 id="conclusion">Conclusion :</h2>
+<p>Ce n'ai pas facile a choisir une tell technologie pour GeoIndoor , il y a plusieurs contraintes (key attribute of a successful indoor wireless positioning system : cost , scalable , low-power , accurate and fast) qui demandent plusieurs études pour choisir la bonne technologie. Prenons l'exemple d'un hopital en 3D (plan complexe : plusieurs etages) on doit choisir Bluetooth Low Energy au lieu de Ultra-Wideband pour les raisons suivants :</p>
+<ul>
+<li>
+<p>Long Battery Life :
+comme on voit dans l'image precedante la technogie basé sur BLE consome moins d'energie que tous les autres technologie ,elle permet aux entreprises de suivre les actifs sans changer de batterie pendant 5 ans maximum par contre UWB ils auraient constamment besoin de changer les piles dans des centaines, voire des milliers d'étiquettes de suivi des actifs.</p>
+</li>
+<li>
+<p>Low Cost : Bluetooth LE dispose d'une infrastructure commerciale plus efficace que UWB. Un système Bluetooth LE ne prend que 5 minutes à configurer, ce qui lui permet d'être mis en œuvre à moindre coût et aide les utilisateurs à obtenir un retour sur investissement plus rapide. Les batteries plus durables contribuent également à réduire les coûts, car les entreprises n'auront pas à les acheter et à les changer constamment. Des systèmes plus complexes, comme UWB, peuvent augmenter considérablement les coûts de l'entreprise en devant acheter des batteries plus fréquemment. Une autre augmentation des coûts provient du besoin de plus de dispositifs de transmission que Bluetooth LE, car les actifs balisés utilisant UWB ont besoin d'une ligne de vue dégagée pour fonctionner correctement. Les coûts des balises sont également très différents les balises UWB standard en faibles volumes peuvent coûter jusqu'à 70 dollars par balise, tandis que les balises Bluetooth LE peuvent aller de 10 à 15 dollars par balise. Étant donné que les balises sont l'un des principaux coûts d'un système de suivi des actifs, la réduction du coût des balises peut réduire les coûts de plus de 80%.</p>
+</li>
+<li>
+<p>Accuracy : BLE permet aux entreprises de suivre les actifs en fonction des besoins spécifiques de localisation des actifs. En plaçant des balises Bluetooth LE dans une installation intérieure, les entreprises peuvent suivre les actifs dans une zone spécifique ou identifier plus précisément l'emplacement en ajoutant plus de balises. Contrairement à UWB, il n'y a pas besoin d'un chemin clair entre les balises et les balises pour communiquer l'emplacement les uns avec les autres. Plus de balises permettent une meilleure précision, mais le nombre d'utilisations dépend de vos besoins spécifiques. UWB a une plus grande précision, mais si votre cas d'utilisation peut fonctionner avec une précision au niveau du mètre au lieu d'une précision au niveau du pied, Bluetooth LE est la voie pour vous</p>
+<pre><code>  &quot;Bluetooth évolue d'une solution de smartphone et de réseau personnel vers une technologie de réseau sans fil évolutive et à faible consommation.&quot; (Recherche ABI). 
+  &quot;Ce développement débloquera la croissance des balises, de la domotique, de l'automatisation des bâtiments, de l'éclairage et d'autres applications de ville intelligente au cours de la prochaine décennie et au-delà.&quot;
+</code></pre>
+</li>
+</ul>
+<p>C'est précisément pour cette raison que tout le monde se penche sur le BLE lors de la conception de ses solutions. Une architecture intelligente et bien pensée le rendait vraiment parfait pour les cas d'utilisation auxquels il était destiné. D'autre part, en raison du nom bien établi de Bluetooth Classic, BLE a eu plus de facilité à gagner la confiance des développeurs. Tous ces facteurs combinés en ont fait le choix incontournable pour de nombreuses applications IoT grand public et bien plus encore, renforçant encore sa position sur le marché. Et le Bluetooth SIG n'a pas encore dit son dernier mot - Bluetooth Low Energy est constamment développé et perfectionné pour répondre aux demandes les plus actuelles du marché, il devrait donc certainement rester sur votre radar.</p>
+<hr>
+<h2 id="sources">Sources :</h2>
+<p>https://www.cloudForce.cn</p>
+<p>https://www.ncbi.nlm.nih.gov</p>
+<p>https://www.semanticscholar.org</p>
+<p>https://www.researchgate.net</p>
+<p>https://situm.com</p>
+<p>https://eloquentarduino.com</p>
+<p>https://www.mappedin.com</p>
+
+</body>
+</html>
